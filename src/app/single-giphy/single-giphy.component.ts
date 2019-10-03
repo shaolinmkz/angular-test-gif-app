@@ -12,6 +12,7 @@ export class SinglGiphyComponent implements OnInit {
 
     id='';
     singleGiphy = '';
+    change = false;
 
     constructor(private appService: AppService, private route: ActivatedRoute,) {
      }
@@ -25,18 +26,23 @@ export class SinglGiphyComponent implements OnInit {
           this.singleGiphy = state.searchedGiphy.find(giphy => giphy.id === this.id);
           if(!this.singleGiphy) {
               this.appService.fetchSingleGiphy(this.id).subscribe(({ data }) => {
+                  this.singleGiphy = data;
                   this.appService.modifyAppState({
                       type: 'SINGLE_GIPHY', payload: data, id: this.id
                   });
               });
+              this.change = true;
           }
       });
 
-      this.appService.modifyAppState({ type: 'SINGLE_GIPHY', payload: this.singleGiphy, id: this.id });
+      if (!this.change) {
+          this.appService.modifyAppState({ type: 'SINGLE_GIPHY', payload: this.singleGiphy, id: this.id });
+      }
+          this.appService.getAppState().subscribe(state => {
+              this.singleGiphy = state.singleGiphy;
+          });
 
-      this.appService.getAppState().subscribe(state => {
-          this.singleGiphy = state.singleGiphy;
-      });
+
   }
 
 }
