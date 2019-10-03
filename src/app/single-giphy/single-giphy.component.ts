@@ -13,7 +13,7 @@ export class SinglGiphyComponent implements OnInit {
     id: string='';
     singleGiphy: any = '';
 
-    constructor(private appService: AppService, private route: ActivatedRoute,) {
+    constructor(private appService: AppService, private route: ActivatedRoute) {
      }
 
   ngOnInit() {
