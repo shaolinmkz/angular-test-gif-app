@@ -10,9 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SinglGiphyComponent implements OnInit {
 
-    id='';
-    singleGiphy = '';
-    change = false;
+    id: string='';
+    singleGiphy: any = '';
 
     constructor(private appService: AppService, private route: ActivatedRoute,) {
      }
@@ -22,27 +21,13 @@ export class SinglGiphyComponent implements OnInit {
           this.id = params['params'].id
       });
 
-      this.appService.getAppState().subscribe(state => {
-          this.singleGiphy = state.searchedGiphy.find(giphy => giphy.id === this.id);
-          if(!this.singleGiphy) {
-              this.appService.fetchSingleGiphy(this.id).subscribe(({ data }) => {
-                  this.singleGiphy = data;
-                  this.appService.modifyAppState({
-                      type: 'SINGLE_GIPHY', payload: data, id: this.id
-                  });
-              });
-              this.change = true;
-          }
-      });
 
-      if (!this.change) {
-          this.appService.modifyAppState({ type: 'SINGLE_GIPHY', payload: this.singleGiphy, id: this.id });
-      }
-          this.appService.getAppState().subscribe(state => {
-              this.singleGiphy = state.singleGiphy;
-          });
-
-
+    this.appService.fetchSingleGiphy(this.id).subscribe(({ data }) => {
+        this.singleGiphy = data;
+        this.appService.modifyAppState({
+            type: 'SINGLE_GIPHY', payload: data, id: this.id
+        });
+    });
   }
 
 }
