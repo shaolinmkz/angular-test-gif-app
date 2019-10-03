@@ -1,0 +1,65 @@
+figure {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    width: 100%;
+    padding-top: 50px;
+}
+
+figure img {
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.1s;
+
+    animation-name: imageEntrance;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out
+}
+
+@keyframes imageEntrance {
+    0%{
+        opacity: 0.5;
+    }
+    10% {
+        transform: translateX(2px);
+    }
+
+    20% {
+        transform: translateX(-2px);
+    }
+        30% {
+        transform: translateX(2px);
+    }
+
+    40% {
+        transform: translateX(-2px);
+    }
+        50% {
+        transform: translateX(2px);
+    }
+
+    60% {
+        transform: translateX(-2px);
+    }
+        70% {
+        transform: translateX(2px);
+    }
+
+    80% {
+        transform: translateX(-2px);
+    }
+
+    90% {
+        transform: translateX(-2px);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+figure > img:hover {
+    cursor: pointer;
+    border: rgb(48, 47, 47) solid 5px;
+}

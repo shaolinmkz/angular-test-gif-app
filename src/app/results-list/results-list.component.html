@@ -1,4 +1,13 @@
-<div>
+<div *ngIf="data.length">
     <!-- Implement result list here -->
-    Results List
+    <figure>
+        <a *ngFor="let giphy of data" [routerLink]="['/single-giphy', giphy.id]">
+            <img src="{{giphy.images.downsized.url}}" height="200" width="200" />
+        </a>
+
+    </figure>
+</div>
+
+<div *ngIf="!data.length">
+    No Giphy Found
 </div>

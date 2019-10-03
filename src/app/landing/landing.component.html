@@ -1,0 +1,7 @@
+<app-search-field></app-search-field>
+<div *ngIf="loading">
+    <h1 style="text-align: center">LOADING...</h1>
+</div>
+<app-results-list *ngIf="reponseData.length" [data]="reponseData"></app-results-list>
+<div *ngIf="reponseData.length" style="display: flex; justify-content: center; padding: 50px"><button type="button"
+        class="btn btn-default pull-right" style="padding: 20px">More</button></div>
